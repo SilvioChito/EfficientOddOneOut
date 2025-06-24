@@ -149,19 +149,21 @@
 <section class="section hero">
   <div class="container is-max-desktop">
     <div class="columns is-centered">
-      <h2 class="title">Method</h2>
-      <div class="content">
+      <div class="column">
+        <h2 class="title is-3">Method</h2>
+        <div class="content">
 
-        <div class="container is-max-desktop is-centered">
-          <div class="hero-body">
-            <img src="static/images/method.png">
+          <div class="container is-max-desktop is-centered">
+            <div class="hero-body">
+              <img src="static/images/method.png">
+            </div>
           </div>
+
+          <p>
+            <br><br>Schematic representation of Our approach. It takes as input M views of the scene, which are processed using the DINOv2 encoder. The resulting features are projected onto a voxel grid and associated with each of the N=3 objects. A subsequent pooling step yields per-object representations. These are further refined by the context and residual anomaly heads, which encode both object-to-object similarity and the relative deviations of each object from the scene-specific average normalcy.       
+          </p>
+
         </div>
-
-        <p>
-          <br><br>Schematic representation of Our approach. It takes as input M views of the scene, which are processed using the DINOv2 encoder. The resulting features are projected onto a voxel grid and associated with each of the N=3 objects. A subsequent pooling step yields per-object representations. These are further refined by the context and residual anomaly heads, which encode both object-to-object similarity and the relative deviations of each object from the scene-specific average normalcy.       
-        </p>
-
       </div>
     </div>
   </div>
