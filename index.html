@@ -120,20 +120,6 @@
   </div>
 </section>
 
-
-<!-- Teaser Image-->
-<section class="hero teaser">
-  <div class="container is-max-desktop">
-    <div class="hero-body">
-      <img src="static/images/teaser_image.png">
-      <h2 class="subtitle has-text-centered">
-        <br><br>Schematic representation of Our approach. It takes as input M views of the scene, which are processed using the DINOv2 encoder. The resulting features are projected onto a voxel grid and associated with each of the N=3 objects. A subsequent pooling step yields per-object representations. These are further refined by the context and residual anomaly heads, which encode both object-to-object similarity and the relative deviations of each object from the scene-specific average normalcy.       
-      </h2>
-    </div>
-  </div>
-</section>
-<!-- End teaser Image -->
-
 <!-- Paper abstract -->
 <section class="section hero is-light">
   <div class="container is-max-desktop">
@@ -145,6 +131,13 @@
             The recently introduced odd-one-out anomaly detection task involves identifying the odd-looking instances within a multi-object scene. This problem presents several challenges for modern deep learning models, demanding spatial reasoning across multiple views and relational reasoning to understand context and generalize across varying object categories and layouts. We argue that these challenges must be addressed with efficiency in mind. To this end, we propose a DINO-based model that reduces the number of parameters by one third and shortens training time by a factor of six compared to the current state-of-the-art, while maintaining competitive performance. Our experimental evaluation also introduces a Multimodal Large Language Model baseline, providing insights into its current limitations in structured visual reasoning tasks.
           </p>
         </div>
+
+        <div class="container is-max-desktop">
+          <div class="hero-body">
+            <img src="static/images/teaser_image.png">
+        </div>
+
+        </div>
       </div>
     </div>
   </div>
@@ -152,7 +145,21 @@
 <!-- End paper abstract -->
 
 
-<!-- IMage carousel
+<!-- Method Image-->
+<section class="hero teaser">
+  <div class="container is-max-desktop">
+    <h2 class="title is-3">Abstract</h2>
+    <div class="hero-body">
+      <img src="static/images/teaser_image.png">
+      <h2 class="subtitle has-text-centered">
+        <br><br>Schematic representation of Our approach. It takes as input M views of the scene, which are processed using the DINOv2 encoder. The resulting features are projected onto a voxel grid and associated with each of the N=3 objects. A subsequent pooling step yields per-object representations. These are further refined by the context and residual anomaly heads, which encode both object-to-object similarity and the relative deviations of each object from the scene-specific average normalcy.       
+      </h2>
+    </div>
+  </div>
+</section>
+<!-- End Method Image -->
+
+<!-- Image carousel
 
 <section class="hero is-small">
   <div class="hero-body">
