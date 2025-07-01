@@ -170,6 +170,7 @@
       <div class="column">
         <h2 class="title is-3">Abstract</h2>
         <div class="content has-text-justified">
+          <br><br>
           <p>
             The recently introduced odd-one-out anomaly detection task involves identifying the odd-looking instances within a multi-object scene. This problem presents several challenges for modern deep learning models, demanding spatial reasoning across multiple views and relational reasoning to understand context and generalize across varying object categories and layouts. We argue that these challenges must be addressed with efficiency in mind. To this end, we propose a DINO-based model that reduces the number of parameters by one third and shortens training time by a factor of six compared to the current state-of-the-art, while maintaining competitive performance. Our experimental evaluation also introduces a Multimodal Large Language Model baseline, providing insights into its current limitations in structured visual reasoning tasks.
           </p>
@@ -194,13 +195,12 @@
     <div class="columns is-centered has-text-centered">
       <div class="column">
         <h2 class="title is-3">Method</h2>
-        <div class="content has-text-justified">
-          <div class="container is-max-desktop">
-            <div class="hero-body">
-              <img src="static/images/method.png">
-            </div>
+        <div class="container is-max-desktop">
+          <div class="hero-body">
+            <img src="static/images/method.png">
           </div>
-
+        </div>
+        <div class="content has-text-justified">
           <p>
             <br><br>The above schematic representation illustrates our approach. It takes as input M views of the scene, which are processed using the DINOv2 encoder. The resulting features are projected onto a voxel grid and associated with each of the N=3 objects. A subsequent pooling step yields per-object representations. These are further refined by the context and residual anomaly heads, which encode both object-to-object similarity and the relative deviations of each object from the scene-specific average normalcy.       
           </p>
