@@ -2,43 +2,100 @@
 <html>
 <head>
   <style>
-    .table-results {
-      margin: 2rem auto;
-      border-collapse: collapse;
+    /* Tech-inspired table styling */
+    .tech-table {
       width: 100%;
       max-width: 900px;
-      background: #fff;
+      margin: 2rem auto 1rem auto;
+      border-collapse: separate;
+      border-spacing: 0;
+      background: #181c24;
+      color: #eee;
+      font-family: 'Noto Sans', 'Segoe UI', Arial, sans-serif;
       font-size: 1rem;
+      box-shadow: 0 4px 28px 0 rgba(30,40,90,0.09);
+      border-radius: 12px;
+      overflow: hidden;
     }
-    .table-results th, .table-results td {
-      border: 1px solid #333;
-      padding: 0.5em 0.8em;
+    .tech-table th, .tech-table td {
+      border: 0;
+      padding: 0.8em 1.1em;
       text-align: center;
       vertical-align: middle;
     }
-    .table-results th {
-      background: #f7f7f7;
-      font-weight: bold;
+    .tech-table th {
+      background: linear-gradient(90deg, #232946 70%, #1a1f2b 100%);
+      color: #64b5f6;
+      font-weight: 700;
+      border-bottom: 2px solid #64b5f6;
+      letter-spacing: 0.04em;
     }
-    .table-results .model {
+    .tech-table tr:not(:last-child) td {
+      border-bottom: 1px solid #2b3142;
+    }
+    .tech-table td.model {
       text-align: left;
-      font-weight: normal;
+      color: #b0b8c1;
+      font-weight: 500;
     }
-    .table-results .ours {
-      font-weight: bold;
+    .tech-table td.ours {
+      font-weight: 700;
+      color: #ffd700;
+      background: linear-gradient(90deg, #232946 80%, #2b3142 100%);
     }
-    .table-results .best {
-      font-weight: bold;
-      color: #1a237e;
+    .tech-table td.best {
+      font-weight: 700;
+      color: #00e6d3;
+      background: rgba(0,230,211,0.09);
+      border-radius: 4px;
     }
-    .table-results a {
-      color: #1976d2;
+    .tech-table a {
+      color: #64b5f6;
       text-decoration: none;
+      border-bottom: 1px dotted #64b5f6;
     }
-    .table-results a:hover {
+    .tech-table a:hover {
       text-decoration: underline;
     }
-  </style>
+    .tech-table caption {
+      caption-side: top;
+      font-weight: 700;
+      font-size: 1.1rem;
+      color: #64b5f6;
+      padding: 0.5em 0;
+      letter-spacing: 0.04em;
+      background: #181c24;
+    }
+    @media (max-width: 600px) {
+      .tech-table, .tech-table thead, .tech-table tbody, .tech-table th, .tech-table td, .tech-table tr {
+        display: block;
+      }
+      .tech-table thead {
+        display: none;
+      }
+      .tech-table tr {
+        margin-bottom: 0.7em;
+        border-radius: 8px;
+        background: #232946;
+        box-shadow: 0 2px 8px 0 rgba(30,40,90,0.09);
+      }
+      .tech-table td {
+        padding-left: 50%;
+        position: relative;
+        text-align: left;
+        border: none;
+        border-bottom: 1px solid #2b3142;
+      }
+      .tech-table td::before {
+        content: attr(data-label);
+        position: absolute;
+        left: 1em;
+        font-weight: bold;
+        color: #64b5f6;
+        text-transform: uppercase;
+      }
+    }
+  </style>    
     
   <meta charset="utf-8">
   <!-- Meta tags for social media banners, these should be filled in appropriatly as they are your "business card" -->
