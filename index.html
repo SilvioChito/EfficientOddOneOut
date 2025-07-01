@@ -2,55 +2,44 @@
 <html>
 <head>
   <style>
-    body {
-      background-color: #e0e0e0; /* Neutral gray */
-      font-family: sans-serif;
-      padding: 40px;
-      display: flex;
-      justify-content: center;
-    }
-
-    .table-wrapper {
-      width: 90%;
-      max-width: 800px;
-    }
-
-    table {
-      width: 100%;
+    .table-results {
+      margin: 2rem auto;
       border-collapse: collapse;
-      background-color: #fff;
-      border-radius: 8px;
-      overflow: hidden;
-      box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
-      transition: box-shadow 0.2s ease, filter 0.2s ease;
+      width: 100%;
+      max-width: 900px;
+      background: #fff;
+      font-size: 1rem;
     }
-
-    table:hover {
-      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
-      filter: brightness(1.015);
+    .table-results th, .table-results td {
+      border: 10px solid #333;
+      padding: 0.5em 0.8em;
+      text-align: center;
+      vertical-align: middle;
     }
-
-    th, td {
-      padding: 14px 18px;
+    .table-results th {
+      background: #f7f7f7;
+      font-weight: bold;
+    }
+    .table-results .model {
       text-align: left;
-      border-bottom: 1px solid #ddd;
+      font-weight: normal;
     }
-
-    th {
-      background-color: #f9f9f9;
-      font-weight: 600;
-      color: #333;
+    .table-results .ours {
+      font-weight: bold;
     }
-
-    tr:last-child td {
-      border-bottom: none;
+    .table-results .best {
+      font-weight: bold;
+      color: #1a237e;
     }
-
-    tr:hover td {
-      background-color: #f6f6f6;
+    .table-results a {
+      color: #1976d2;
+      text-decoration: none;
+    }
+    .table-results a:hover {
+      text-decoration: underline;
     }
   </style>
-    
+
   <meta charset="utf-8">
   <!-- Meta tags for social media banners, these should be filled in appropriatly as they are your "business card" -->
   <!-- Replace the content tag with appropriate information -->
@@ -227,7 +216,6 @@
       <div class="column is-four-fifths">
         <h2 class="title is-3">Main Results</h2>
         <div class="content has-text-centered">
-          <br><br>
           <table class="table-results">
             <thead>
               <tr>
