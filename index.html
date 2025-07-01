@@ -3,52 +3,53 @@
 <head>
   <style>
     body {
-      background-color: #f0f0f0; /* Light gray background */
-      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      background-color: #e0e0e0; /* Neutral gray */
+      font-family: sans-serif;
       padding: 40px;
       display: flex;
       justify-content: center;
     }
 
-    table {
-      border-collapse: collapse;
-      width: 80%;
+    .table-wrapper {
+      width: 90%;
       max-width: 800px;
-      background-color: #ffffff;
-      border-radius: 12px;
+    }
+
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      background-color: #fff;
+      border-radius: 8px;
       overflow: hidden;
-      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
-      transition: transform 0.2s ease;
+      box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+      transition: box-shadow 0.2s ease, filter 0.2s ease;
     }
 
     table:hover {
-      transform: scale(1.01);
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+      filter: brightness(1.015);
+    }
+
+    th, td {
+      padding: 14px 18px;
+      text-align: left;
+      border-bottom: 1px solid #ddd;
     }
 
     th {
-      background-color: #eaeaea;
-      text-align: left;
-      padding: 16px;
+      background-color: #f9f9f9;
       font-weight: 600;
       color: #333;
-      border-bottom: 1px solid #ccc;
     }
 
-    td {
-      padding: 16px;
-      color: #444;
-      border-bottom: 1px solid #eee;
+    tr:last-child td {
+      border-bottom: none;
     }
 
     tr:hover td {
-      background-color: #f9f9f9;
+      background-color: #f6f6f6;
     }
-
-    /* Optional: Zebra striping */
-    tr:nth-child(even) td {
-      background-color: #fcfcfc;
-    }
-  </style>    
+  </style>
     
   <meta charset="utf-8">
   <!-- Meta tags for social media banners, these should be filled in appropriatly as they are your "business card" -->
