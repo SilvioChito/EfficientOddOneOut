@@ -12,7 +12,12 @@
       border-radius: 12px;
       border-collapse: separate;      /* Keep borders separated */
       border-spacing: 0;
-      overflow-x: auto;
+      overflow: hidden;
+    }
+
+    .table_wrapper {
+      width: 100%;
+      overflow-x: scroll;
     }
 
     /* External border only on the table */
@@ -242,71 +247,75 @@
         <div class="container"> <!--<div class="container is-max-desktop">-->
 
           <div class="hero-body">
-            <table class="table-results">
-              <thead>
-                <tr>
-                  <th rowspan="2">Model</th>
-                  <th colspan="2">Toys Seen</th>
-                  <th colspan="2">Toys Unseen</th>
-                  <th colspan="2">Parts</th>
-                </tr>
-                <tr>
-                  <th>AUC</th>
-                  <th>Accuracy</th>
-                  <th>AUC</th>
-                  <th>Accuracy</th>
-                  <th>AUC</th>
-                  <th>Accuracy</th>
-                </tr>
-              </thead>
-              <tbody>
-                <tr>
-                  <td class="model">ImVoxelNet</td>
-                  <td>78.13</td>
-                  <td>65.55</td>
-                  <td>73.19</td>
-                  <td>60.12</td>
-                  <td>72.80</td>
-                  <td>64.34</td>
-                </tr>
-                <tr>
-                  <td class="model">DETR3D</td>
-                  <td>79.16</td>
-                  <td>67.37</td>
-                  <td>74.60</td>
-                  <td>62.98</td>
-                  <td>74.49</td>
-                  <td>65.11</td>
-                </tr>
-                <tr>
-                  <td class="model">OOO</td>
-                  <td class="best">91.78</td>
-                  <td>83.21</td>
-                  <td class="best">89.15</td>
-                  <td class="best">81.57</td>
-                  <td>86.12</td>
-                  <td>79.68</td>
-                </tr>
-                <tr>
-                  <td class="model">MLLM baseline</td>
-                  <td>-</td>
-                  <td>52.23</td>
-                  <td>-</td>
-                  <td>53.35</td>
-                  <td>-</td>
-                  <td>60.73</td>
-                </tr>
-                <tr>
-                  <td class="model ours">Ours</td>
-                  <td>89.82</td>
-                  <td class="best">85.39</td>
-                  <td>84.43</td>
-                  <td>80.64</td>
-                  <td class="best">89.72</td>
-                  <td class="best">88.81</td>
-                </tr>
-              </tbody>
-            </table>
+            <div class="table_wrapper">
+
+            </div>
+              <table class="table-results">
+                <thead>
+                  <tr>
+                    <th rowspan="2">Model</th>
+                    <th colspan="2">Toys Seen</th>
+                    <th colspan="2">Toys Unseen</th>
+                    <th colspan="2">Parts</th>
+                  </tr>
+                  <tr>
+                    <th>AUC</th>
+                    <th>Accuracy</th>
+                    <th>AUC</th>
+                    <th>Accuracy</th>
+                    <th>AUC</th>
+                    <th>Accuracy</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td class="model">ImVoxelNet</td>
+                    <td>78.13</td>
+                    <td>65.55</td>
+                    <td>73.19</td>
+                    <td>60.12</td>
+                    <td>72.80</td>
+                    <td>64.34</td>
+                  </tr>
+                  <tr>
+                    <td class="model">DETR3D</td>
+                    <td>79.16</td>
+                    <td>67.37</td>
+                    <td>74.60</td>
+                    <td>62.98</td>
+                    <td>74.49</td>
+                    <td>65.11</td>
+                  </tr>
+                  <tr>
+                    <td class="model">OOO</td>
+                    <td class="best">91.78</td>
+                    <td>83.21</td>
+                    <td class="best">89.15</td>
+                    <td class="best">81.57</td>
+                    <td>86.12</td>
+                    <td>79.68</td>
+                  </tr>
+                  <tr>
+                    <td class="model">MLLM baseline</td>
+                    <td>-</td>
+                    <td>52.23</td>
+                    <td>-</td>
+                    <td>53.35</td>
+                    <td>-</td>
+                    <td>60.73</td>
+                  </tr>
+                  <tr>
+                    <td class="model ours">Ours</td>
+                    <td>89.82</td>
+                    <td class="best">85.39</td>
+                    <td>84.43</td>
+                    <td>80.64</td>
+                    <td class="best">89.72</td>
+                    <td class="best">88.81</td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
           </div>
         </div>
 
