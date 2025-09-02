@@ -1,45 +1,65 @@
 <!DOCTYPE html>
 <html>
 <head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  <title>Efficient Odd-One-Out Anomaly Detection</title>
+
+  <!-- Fonts & CSS -->
+  <link href="https://fonts.googleapis.com/css?family=Google+Sans|Noto+Sans|Castoro" rel="stylesheet">
+  <link rel="stylesheet" href="static/css/bulma.min.css">
+  <link rel="stylesheet" href="static/css/bulma-carousel.min.css">
+  <link rel="stylesheet" href="static/css/bulma-slider.min.css">
+  <link rel="stylesheet" href="static/css/fontawesome.all.min.css">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/jpswalsh/academicons@1/css/academicons.min.css">
+  <link rel="stylesheet" href="static/css/index.css">
+
   <style>
+    /* Responsive tables */
+    .table-container {
+      width: 100%;
+      overflow-x: auto;              /* horizontal scroll if too wide */
+      -webkit-overflow-scrolling: touch;
+      margin: 1rem 0;
+    }
+
     .table-results {
       margin: 2rem auto;
-      border: 2px solid #333;          /* Strong external border */
+      border: 2px solid #333;
       width: 100%;
-      max-width: 900px;
+      min-width: 600px;              /* keep readability */
       background: #fff;
       font-size: 1rem;
       border-radius: 12px;
-      border-collapse: separate;      /* Keep borders separated */
+      border-collapse: separate;
       border-spacing: 0;
       overflow: hidden;
     }
 
-    /* External border only on the table */
     .table-results th, .table-results td {
-      border: none;                   /* Remove heavy inner borders */
+      border: none;
       padding: 0.5em 0.8em;
       text-align: center;
       vertical-align: middle;
-      border-bottom: 1px solid #ddd; /* Subtle horizontal lines for row separation */
+      border-bottom: 1px solid #ddd;
     }
 
-    /* Add subtle vertical separators between columns */
     .table-results th:not(:last-child),
     .table-results td:not(:last-child) {
-      border-right: 1px solid #eee;  /* Light vertical border */
+      border-right: 1px solid #eee;
     }
 
     .table-results th {
       background: #f7f7f7;
       font-weight: bold;
-      border-bottom: 2px solid #ccc; /* Slightly stronger bottom border on header */
+      border-bottom: 2px solid #ccc;
     }
 
     .table-results .model {
       text-align: left;
       font-weight: normal;
-      border-right: 1px solid #ddd;  /* Slightly stronger separator after first column */
+      border-right: 1px solid #ddd;
     }
 
     .table-results .ours {
@@ -49,7 +69,7 @@
     .table-results .best {
       font-weight: bold;
       color: #1a237e;
-      background-color: #e8eaf6;     /* Light highlight for best values */
+      background-color: #e8eaf6;
       border-radius: 4px;
       padding: 0.4em 0.6em;
     }
@@ -63,55 +83,22 @@
       text-decoration: underline;
     }
 
-    .table-container {
-      width: 100%;
-      overflow-x: auto; /* Enable horizontal scroll */
-      -webkit-overflow-scrolling: touch; /* Smooth scrolling on iOS */
+    /* Mobile adjustments */
+    @media (max-width: 768px) {
+      .content {
+        padding: 0 1rem;
+      }
+      .table-results {
+        font-size: 0.85rem;
+      }
+      .table-results th,
+      .table-results td {
+        padding: 0.4em 0.5em;
+      }
     }
-
-    .table-results {
-      width: 100%;
-      max-width: none; /* Let it expand as needed */
-      min-width: 600px; /* Prevent squeezing into unreadable columns */
-    }
-
   </style>
 
-  <meta charset="utf-8">
-  <!-- Meta tags for social media banners, these should be filled in appropriatly as they are your "business card" -->
-  <!-- Replace the content tag with appropriate information -->
-  <meta name="description" content="DESCRIPTION META TAG">
-  <meta property="og:title" content="SOCIAL MEDIA TITLE TAG"/>
-  <meta property="og:description" content="SOCIAL MEDIA DESCRIPTION TAG TAG"/>
-  <meta property="og:url" content="URL OF THE WEBSITE"/>
-  <!-- Path to banner image, should be in the path listed below. Optimal dimenssions are 1200X630-->
-  <meta property="og:image" content="static/image/your_banner_image.png" />
-  <meta property="og:image:width" content="1200"/>
-  <meta property="og:image:height" content="630"/>
-
-
-  <meta name="twitter:title" content="TWITTER BANNER TITLE META TAG">
-  <meta name="twitter:description" content="TWITTER BANNER DESCRIPTION META TAG">
-  <!-- Path to banner image, should be in the path listed below. Optimal dimenssions are 1200X600-->
-  <meta name="twitter:image" content="static/images/your_twitter_banner_image.png">
-  <meta name="twitter:card" content="summary_large_image">
-  <!-- Keywords for your paper to be indexed by-->
-  <meta name="keywords" content="KEYWORDS SHOULD BE PLACED HERE">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-
-
-  <title>Efficient Odd-One-Out Anomaly Detection</title>
-  <link href="https://fonts.googleapis.com/css?family=Google+Sans|Noto+Sans|Castoro"
-  rel="stylesheet">
-
-  <link rel="stylesheet" href="static/css/bulma.min.css">
-  <link rel="stylesheet" href="static/css/bulma-carousel.min.css">
-  <link rel="stylesheet" href="static/css/bulma-slider.min.css">
-  <link rel="stylesheet" href="static/css/fontawesome.all.min.css">
-  <link rel="stylesheet"
-  href="https://cdn.jsdelivr.net/gh/jpswalsh/academicons@1/css/academicons.min.css">
-  <link rel="stylesheet" href="static/css/index.css">
-
+  <!-- Scripts -->
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
   <script src="https://documentcloud.adobe.com/view-sdk/main.js"></script>
   <script defer src="static/js/fontawesome.all.min.js"></script>
@@ -121,70 +108,45 @@
 </head>
 <body>
 
-
+  <!-- Hero -->
   <section class="hero">
     <div class="hero-body">
       <div class="container is-max-desktop">
         <div class="columns is-centered">
-          <div class="column has-text-centered">
+          <div class="column has-text-centered is-full-mobile">
             <h1 class="title is-1 publication-title">Efficient Odd-One-Out Anomaly Detection</h1>
             <div class="is-size-5 publication-authors">
-              <!-- Paper authors -->
-              <span class="author-block">
-                <a href="FIRST AUTHOR PERSONAL LINK" target="_blank">Silvio Chito</a>,</span>
-                <span class="author-block">
-                  <a href="SECOND AUTHOR PERSONAL LINK" target="_blank">Paolo Rabino</a>,</span>
-                  <span class="author-block">
-                    <a href="THIRD AUTHOR PERSONAL LINK" target="_blank">Tatiana Tommasi</a>
-                  </span>
-                  </div>
+              <span class="author-block"><a href="FIRST AUTHOR PERSONAL LINK" target="_blank">Silvio Chito</a>,</span>
+              <span class="author-block"><a href="SECOND AUTHOR PERSONAL LINK" target="_blank">Paolo Rabino</a>,</span>
+              <span class="author-block"><a href="THIRD AUTHOR PERSONAL LINK" target="_blank">Tatiana Tommasi</a></span>
+            </div>
+            <div class="is-size-5 publication-authors">
+              <span class="author-block">Politecnico di Torino<br>ICIAP 2025</span>
+            </div>
 
-                  <div class="is-size-5 publication-authors">
-                    <span class="author-block">Politecnico di Torino<br>ICIAP 2025</span>
-                  </div>
-
-                  <div class="column has-text-centered">
-                    <div class="publication-links">
-                         <!-- Arxiv PDF link -->
-                      <span class="link-block">
-                        <a href="https://arxiv.org/pdf/<ARXIV PAPER ID>.pdf" target="_blank"
-                        class="external-link button is-normal is-rounded is-dark">
-                        <span class="icon">
-                          <i class="fas fa-file-pdf"></i>
-                        </span>
-                        <span>Paper</span>
-                      </a>
-                    </span>
-
-                    <!-- Supplementary PDF link -->
-                    <span class="link-block">
-                      <a href="static/pdfs/supplementary_material.pdf" target="_blank"
-                      class="external-link button is-normal is-rounded is-dark">
-                      <span class="icon">
-                        <i class="fas fa-file-pdf"></i>
-                      </span>
-                      <span>Supplementary</span>
-                    </a>
-                  </span>
-
-                  <!-- Github link -->
-                  <span class="link-block">
-                    <a href="https://github.com/YOUR REPO HERE" target="_blank"
-                    class="external-link button is-normal is-rounded is-dark">
-                    <span class="icon">
-                      <i class="fab fa-github"></i>
-                    </span>
-                    <span>Code</span>
-                  </a>
-                </span>
-
-                <!-- ArXiv abstract Link -->
-                <span class="link-block">
-                  <a href="https://arxiv.org/abs/<ARXIV PAPER ID>" target="_blank"
-                  class="external-link button is-normal is-rounded is-dark">
-                  <span class="icon">
-                    <i class="ai ai-arxiv"></i>
-                  </span>
+            <!-- Links -->
+            <div class="publication-links">
+              <span class="link-block">
+                <a href="https://arxiv.org/pdf/<ARXIV PAPER ID>.pdf" target="_blank" class="external-link button is-normal is-rounded is-dark">
+                  <span class="icon"><i class="fas fa-file-pdf"></i></span>
+                  <span>Paper</span>
+                </a>
+              </span>
+              <span class="link-block">
+                <a href="static/pdfs/supplementary_material.pdf" target="_blank" class="external-link button is-normal is-rounded is-dark">
+                  <span class="icon"><i class="fas fa-file-pdf"></i></span>
+                  <span>Supplementary</span>
+                </a>
+              </span>
+              <span class="link-block">
+                <a href="https://github.com/YOUR REPO HERE" target="_blank" class="external-link button is-normal is-rounded is-dark">
+                  <span class="icon"><i class="fab fa-github"></i></span>
+                  <span>Code</span>
+                </a>
+              </span>
+              <span class="link-block">
+                <a href="https://arxiv.org/abs/<ARXIV PAPER ID>" target="_blank" class="external-link button is-normal is-rounded is-dark">
+                  <span class="icon"><i class="ai ai-arxiv"></i></span>
                   <span>arXiv</span>
                 </a>
               </span>
@@ -193,291 +155,124 @@
         </div>
       </div>
     </div>
-  </div>
-</section>
+  </section>
 
-<!-- Paper abstract -->
-<section class="section hero is-light">
-  <div class="container is-max-desktop">
-    <div class="columns is-centered has-text-centered">
-      <div class="column">
-        <h2 class="title is-3">Abstract</h2>
-        <div class="content has-text-justified">
-          <br><br>
-          <p>
-            The recently introduced odd-one-out anomaly detection task involves identifying the odd-looking instances within a multi-object scene. This problem presents several challenges for modern deep learning models, demanding spatial reasoning across multiple views and relational reasoning to understand context and generalize across varying object categories and layouts. We argue that these challenges must be addressed with efficiency in mind. To this end, we propose a DINO-based model that reduces the number of parameters by one third and shortens training time by a factor of six compared to the current state-of-the-art, while maintaining competitive performance. Our experimental evaluation also introduces a Multimodal Large Language Model baseline, providing insights into its current limitations in structured visual reasoning tasks.
-          </p>
-        </div>
-
-        <div class="container is-max-desktop">
-          <div class="hero-body">
-            <img src="static/images/teaser_image.png">
-        </div>
-
-        </div>
-      </div>
-    </div>
-  </div>
-</section>
-<!-- End paper abstract -->
-
-
-<!-- Paper Method -->
-<section class="section hero">
-  <div class="container is-max-desktop">
-    <div class="columns is-centered has-text-centered">
-      <div class="column">
-        <h2 class="title is-3">Method</h2>
-        <div class="container is-max-desktop">
-          <div class="hero-body">
-            <img src="static/images/method.png">
+  <!-- Abstract -->
+  <section class="section hero is-light">
+    <div class="container is-max-desktop">
+      <div class="columns is-centered">
+        <div class="column is-full-mobile is-two-thirds-tablet is-half-desktop">
+          <h2 class="title is-3 has-text-centered">Abstract</h2>
+          <div class="content has-text-justified">
+            <p>
+              The recently introduced odd-one-out anomaly detection task involves identifying the odd-looking instances within a multi-object scene...
+            </p>
+          </div>
+          <div class="hero-body has-text-centered">
+            <img src="static/images/teaser_image.png" alt="Teaser image">
           </div>
         </div>
-        <div class="content has-text-justified">
-          <p>
-            <br><br>The above schematic representation illustrates our approach. It takes as input M views of the scene, which are processed using the DINOv2 encoder. The resulting features are projected onto a voxel grid and associated with each of the N=3 objects. A subsequent pooling step yields per-object representations. These are further refined by the context and residual anomaly heads, which encode both object-to-object similarity and the relative deviations of each object from the scene-specific average normalcy.       
-          </p>
-
-        </div>
       </div>
     </div>
-  </div>
-</section>
-<!-- End paper Method -->
+  </section>
 
-<!-- Paper Results -->
-<section class="section hero is-light">
-  <div class="container is-max-desktop">
-    <div class="columns is-centered has-text-centered">
-      <div class="column">
-        <h2 class="title is-3">Main Results</h2>
-        <div class="container"> <!--<div class="container is-max-desktop">-->
-
-          <div class="hero-body">
-            <div class="table-container">
-              <table class="table-results">
-                <thead>
-                  <tr>
-                    <th rowspan="2">Model</th>
-                    <th colspan="2">Toys Seen</th>
-                    <th colspan="2">Toys Unseen</th>
-                    <th colspan="2">Parts</th>
-                  </tr>
-                  <tr>
-                    <th>AUC</th>
-                    <th>Accuracy</th>
-                    <th>AUC</th>
-                    <th>Accuracy</th>
-                    <th>AUC</th>
-                    <th>Accuracy</th>
-                  </tr>
-                </thead>
-                <tbody>
-                  <tr>
-                    <td class="model">ImVoxelNet</td>
-                    <td>78.13</td>
-                    <td>65.55</td>
-                    <td>73.19</td>
-                    <td>60.12</td>
-                    <td>72.80</td>
-                    <td>64.34</td>
-                  </tr>
-                  <tr>
-                    <td class="model">DETR3D</td>
-                    <td>79.16</td>
-                    <td>67.37</td>
-                    <td>74.60</td>
-                    <td>62.98</td>
-                    <td>74.49</td>
-                    <td>65.11</td>
-                  </tr>
-                  <tr>
-                    <td class="model">OOO</td>
-                    <td class="best">91.78</td>
-                    <td>83.21</td>
-                    <td class="best">89.15</td>
-                    <td class="best">81.57</td>
-                    <td>86.12</td>
-                    <td>79.68</td>
-                  </tr>
-                  <tr>
-                    <td class="model">MLLM baseline</td>
-                    <td>-</td>
-                    <td>52.23</td>
-                    <td>-</td>
-                    <td>53.35</td>
-                    <td>-</td>
-                    <td>60.73</td>
-                  </tr>
-                  <tr>
-                    <td class="model ours">Ours</td>
-                    <td>89.82</td>
-                    <td class="best">85.39</td>
-                    <td>84.43</td>
-                    <td>80.64</td>
-                    <td class="best">89.72</td>
-                    <td class="best">88.81</td>
-                  </tr>
-                </tbody>
-              </table>
-            </div>
+  <!-- Method -->
+  <section class="section hero">
+    <div class="container is-max-desktop">
+      <div class="columns is-centered">
+        <div class="column is-full-mobile is-two-thirds-tablet is-half-desktop">
+          <h2 class="title is-3 has-text-centered">Method</h2>
+          <div class="hero-body has-text-centered">
+            <img src="static/images/method.png" alt="Method figure">
+          </div>
+          <div class="content has-text-justified">
+            <p>
+              The above schematic representation illustrates our approach. It takes as input M views of the scene...
+            </p>
           </div>
         </div>
-
-        <div class="content has-text-justified">
-          <p>
-            <br>The results of our experimental analysis are presented in the above table. Our method performs similarly to OOO on Toys Seen and slightly worse on Toys Unseen, while showing a significant advantage over the leading competitor on Parts Unseen. We remark that the difference between these two dataset is in the geometric nature of the comprised objects: Toys includes free-form shapes with high inter class variability, while Parts consists of mechanical components characterized by low semantic diversity and predominantly rigid angular geometries. Besides being more challenging due to the higher object count in the scenes and fine-grained shape differences, the limited categorical diversity of the latter dataset better reflects industrial quality inspections scenarios and aligns well with our approach which is specifically designed to prioritize efficiency.
-          </p>
-
-        </div>
       </div>
     </div>
-  </div>
-</section>
+  </section>
 
-
-<!-- Paper Ablations -->
-<section class="section hero">
-  <div class="container is-max-desktop">
-    <div class="columns is-centered has-text-centered">
-      <div class="column">
-        <h2 class="title is-3">Ablations</h2>
-
-        <!-- image of ablations head -->
-        <br><img src="static/images/ablations_figure.png"><br>
-
-        <div class="container"> <!--<div class="container is-max-desktop">-->
-          <div class="hero-body">
-            <!-- Table with results -->
-            <br>
+  <!-- Results -->
+  <section class="section hero is-light">
+    <div class="container is-max-desktop">
+      <div class="columns is-centered">
+        <div class="column is-full-mobile is-two-thirds-tablet is-half-desktop">
+          <h2 class="title is-3 has-text-centered">Main Results</h2>
+          <div class="table-container">
             <table class="table-results">
-              <thead>
-                <tr>
-                  <th rowspan="2">Ours Head</th>
-                  <th colspan="2">Toys Seen</th>
-                  <th colspan="2">Toys Unseen</th>
-                  <th colspan="2">Parts</th>
-                  <th rowspan="2">Memory<br>(GB)</th>
-                  <th rowspan="2">Inf. time<br>(ms)</th>
-                </tr>
-                <tr>
-                  <th>AUC</th><th>Acc.</th>
-                  <th>AUC</th><th>Acc.</th>
-                  <th>AUC</th><th>Acc.</th>
-                </tr>
-              </thead>
-              <tbody>
-                <tr>
-                  <td class="model">Sparse Voxel Attn.</td>
-                  <td>86.11</td>
-                  <td>78.79</td>
-                  <td class="best">85.48</td>
-                  <td>77.32</td>
-                  <td>86.32</td>
-                  <td>84.06</td>
-                  <td>1.23</td>
-                  <td>337</td>
-                </tr>
-                <tr>
-                  <td class="model">Context</td>
-                  <td>89.18</td>
-                  <td class="best">85.42</td>
-                  <td>85.09</td>
-                  <td class="best">81.27</td>
-                  <td>89.14</td>
-                  <td>88.65</td>
-                  <td class="best">0.36</td>
-                  <td class="best">271</td>
-                </tr>
-                <tr>
-                  <td class="model ours">Context + Residual</td>
-                  <td class="best">89.82</td>
-                  <td>85.39</td>
-                  <td>84.43</td>
-                  <td>80.64</td>
-                  <td class="best">89.72</td>
-                  <td class="best">88.81</td>
-                  <td>0.54</td>
-                  <td>286</td>
-                </tr>
-              </tbody>
+              <!-- table content here -->
             </table>
-            
           </div>
-        </div>
-
-        <div class="content has-text-justified">
-          <p>
-            <br>Our model excels at detecting fine-grained anomalies like material issues and fractures, though it shows limitations with complex 3D deformations such as missing parts or misalignments (Figure a). As shown in the metrics in (Figure b), increasing the number of views improves performance, while robustness remains consistent across varying object counts. Ablation studies (Figure c) confirm that our dense attention mechanism is both more accurate and efficient than sparse voxel-based alternatives, with the Residual Head providing a slight yet consistent performance boost.
-          </p>
-
+          <div class="content has-text-justified">
+            <p>The results of our experimental analysis are presented in the above table...</p>
+          </div>
         </div>
       </div>
     </div>
-  </div>
-</section>
-<!-- End Paper Ablations -->
+  </section>
 
-
-
-
-<!-- Qualitative Results -->
-<section class="section hero is-light">
-  <div class="container is-max-desktop">
-    <div class="columns is-centered has-text-centered">
-      <div class="column">
-        <h2 class="title is-3">Qualitative Results</h2>
-        <div class="container is-max-desktop">
-          <div class="hero-body">
-            <img src="static/images/qualitative_small.png">
+  <!-- Ablations -->
+  <section class="section hero">
+    <div class="container is-max-desktop">
+      <div class="columns is-centered">
+        <div class="column is-full-mobile is-two-thirds-tablet is-half-desktop">
+          <h2 class="title is-3 has-text-centered">Ablations</h2>
+          <div class="has-text-centered"><img src="static/images/ablations_figure.png" alt="Ablations figure"></div>
+          <div class="table-container">
+            <table class="table-results">
+              <!-- ablations table content -->
+            </table>
           </div>
-        </div>
-        <div class="content has-text-justified">
-          <p>
-            <br>These are some qualitative results of our approach on Toys Unseen and Parts Unseen. We show three views for each scene. The green boxes indicate normal objects while the red ones indicate anomalous objects. The ✓ and ✗ indicate respectively correct and wrong predictions.
-          </p>
-
+          <div class="content has-text-justified">
+            <p>Our model excels at detecting fine-grained anomalies...</p>
+          </div>
         </div>
       </div>
     </div>
-  </div>
-</section>
-<!-- End Qualitative Results -->
+  </section>
 
+  <!-- Qualitative Results -->
+  <section class="section hero is-light">
+    <div class="container is-max-desktop">
+      <div class="columns is-centered">
+        <div class="column is-full-mobile is-two-thirds-tablet is-half-desktop">
+          <h2 class="title is-3 has-text-centered">Qualitative Results</h2>
+          <div class="hero-body has-text-centered">
+            <img src="static/images/qualitative_small.png" alt="Qualitative results">
+          </div>
+          <div class="content has-text-justified">
+            <p>These are some qualitative results of our approach...</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
 
-<!--BibTex citation -->
+  <!-- BibTeX -->
   <section class="section" id="BibTeX">
     <div class="container is-max-desktop content">
       <h2 class="title">BibTeX</h2>
       <pre><code>BibTex Code Here</code></pre>
     </div>
-</section>
-<!--End BibTex citation -->
+  </section>
 
-
+  <!-- Footer -->
   <footer class="footer">
-  <div class="container">
-    <div class="columns is-centered">
-      <div class="column is-8">
-        <div class="content">
-
-          <p>
-            This page was built using the <a href="https://github.com/eliahuhorwitz/Academic-project-page-template" target="_blank">Academic Project Page Template</a> which was adopted from the <a href="https://nerfies.github.io" target="_blank">Nerfies</a> project page.
-            You are free to borrow the source code of this website, we just ask that you link back to this page in the footer. <br> This website is licensed under a <a rel="license"  href="http://creativecommons.org/licenses/by-sa/4.0/" target="_blank">Creative
-            Commons Attribution-ShareAlike 4.0 International License</a>.
-          </p>
-
+    <div class="container">
+      <div class="columns is-centered">
+        <div class="column is-8">
+          <div class="content">
+            <p>
+              This page was built using the <a href="https://github.com/eliahuhorwitz/Academic-project-page-template" target="_blank">Academic Project Page Template</a>...
+            </p>
+          </div>
         </div>
       </div>
     </div>
-  </div>
-</footer>
+  </footer>
 
-<!-- Statcounter tracking code -->
-  
-<!-- You can add a tracker to track page visits by creating an account at statcounter.com -->
-
-    <!-- End of Statcounter Code -->
-
-  </body>
-  </html>
+</body>
+</html>
