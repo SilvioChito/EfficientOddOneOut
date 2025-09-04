@@ -1,0 +1,34 @@
+dataset:
+  data_path: ./datasets/oddoneout/partsad15k/
+  batch_size: 20
+  num_views: 10
+  dimension: 256
+  max_objs: 10
+  random_scene_rotation_augmentation: True
+  num_workers: 4
+  raw_dimension: 256
+
+train:
+  lr_encoder: 2e-4
+  lr_oddmatcher: 2e-4
+
+model:
+  backbone:
+    voxel_dim: [96,96,16]
+    voxel_size: 0.04
+    backbone2d_stride: 4
+
+  backbone3D:
+    channels: [32, 64, 128, 256]
+    layers_down: [1, 2, 3, 4]
+    layers: [3, 2, 1]
+    norm: 'nnSyncBN'
+    drop: 0.0
+        
+  oddmatcher:
+    dinov2_model_name: 'dinov2_vits14'
+    input_channel_dim: 32
+    squeezed_dim: 256
+    n_head: 8
+    n_layer_attn: 3
+  
