@@ -1,6 +1,6 @@
 # Efficient Odd-One-Out Anomaly Detection
 
-📚 [arXiv](https://arxiv.org/abs/xxxx.xxxxx) • [🌐 Project Page](https://silviochito.github.io/EfficientOddOneOut/)
+📚 [arXiv](https://arxiv.org/abs/2509.04326) • [🌐 Project Page](https://silviochito.github.io/EfficientOddOneOut/)
 
 ![Alt text](./model.png)
 
@@ -58,8 +58,8 @@ python train.py --config_path configs/parts_model.yaml # training on parts
 
 You can download the pretrained model checkpoints from the links below:
 
-- [Checkpoint trained on Toys](https://example.com/checkpoints/model_a.ckpt)
-- [Checkpoint trained on Parts](https://example.com/checkpoints/model_b.ckpt)
+- [Checkpoint trained on Toys](https://github.com/SilvioChito/EfficientOddOneOut/releases/download/v1.0.0/Checkpoint_Toys.pt)
+- [Checkpoint trained on Parts](https://github.com/SilvioChito/EfficientOddOneOut/releases/download/v1.0.0/Checkpoint_Parts.pt)
 
 ## 🧪 Run Inference
 ```bash
@@ -72,7 +72,15 @@ python train.py --config configs/conf_parts.yaml --resume_ckpt ./parts_model.pt
 
 ## 📚 Citation
 ```bibtex
-Upon arxiv publication
+@misc{chito2025efficientoddoneoutanomalydetection,
+      title={Efficient Odd-One-Out Anomaly Detection}, 
+      author={Silvio Chito and Paolo Rabino and Tatiana Tommasi},
+      year={2025},
+      eprint={2509.04326},
+      archivePrefix={arXiv},
+      primaryClass={cs.CV},
+      url={https://arxiv.org/abs/2509.04326}, 
+}
 ```
 
 
