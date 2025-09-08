@@ -1,0 +1,33 @@
+name: working_env_publish_final
+
+channels:
+  - conda-forge
+  - pytorch
+  - nvidia
+dependencies:
+  - python=3.11
+  - numpy
+  - psutil
+  - toolz
+  - matplotlib
+  - scipy
+  - pytorch=2.4.1
+  - torchvision==0.19.1
+  - pytorch-cuda=11.8
+  - PyYAML
+  - Pillow
+  - omegaconf
+  - fvcore
+  - tqdm
+  - iopath
+  - einops
+  - scikit-learn
+  - ninja
+  - pybind11
+  - gcc_linux-64=11
+  - gxx
+  - lovely-tensors
+  - pip
+  - pip:
+      - opencv-python
+      - roma
