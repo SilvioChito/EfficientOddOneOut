@@ -51,7 +51,7 @@ conda activate my_env
 python train.py --config_path configs/conf_toys.yaml # training on toys
 ```
 ```bash
-python train.py --config_path configs/parts_model.yaml # training on parts
+python train.py --config_path configs/conf_parts.yaml # training on parts
 ```
 
 ## 🔽 Download Checkpoints
@@ -63,10 +63,10 @@ You can download the pretrained model checkpoints from the links below:
 
 ## 🧪 Run Inference
 ```bash
-python train.py --config configs/conf_toys.yaml --resume_ckpt ./toys_model.pt
+python train.py --config configs/conf_toys.yaml --resume_ckpt ./Checkpoint_Toys.pt
 ```
 ```bash
-python train.py --config configs/conf_parts.yaml --resume_ckpt ./parts_model.pt
+python train.py --config configs/conf_parts.yaml --resume_ckpt ./Checkpoint_Parts.pt
 ```
 
 
