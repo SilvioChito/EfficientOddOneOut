@@ -34,8 +34,8 @@ A script for downloading the datasets is provided in the *data* folder (*downloa
 ### 🔧 Clone the repository
 
 ```bash
-git clone https://github.com/yourusername/your-repo-name.git
-cd your-repo-name
+git clone https://github.com/SilvioChito/EfficientOddOneOut.git
+cd EfficientOddOneOut
 ```
 
 ### 📦 Set up the environment
